@@ -7,35 +7,42 @@ While some testing has been done to ensure the library is working as intended in
 
 ## Usage
 ### Hello World - create new container, a file therein and write to it
-    
-    let const file_system_size: usize = 512 * 512; // in bytes
+```rust
+fn main() {
+    let file_system_size: usize = 512 * 512; // in bytes
     let container = ContainerFile::create(
         "foo/bar/container.vc",
         &"password",
-        file_system_size
+    file_system_size
     )?;
-    
+        
     let fs = container.mount()?;
     let root_dir = fs.root_dir();
-        
+            
     let mut file = root_dir.create_file("helloWorld.txt")?;
     file.write_all(b"Hello World")?;
     file.flush()?;
-    
+}
+```
 ### read from existing container
-
+```rust
+fn main() {
     let container = ContainerFile::open("foo/bar/container.vc")?;
     container.unlock("password")?;
-    
+        
     let fs = container.mount()?;
     let root_dir = fs.root_dir();
-    
+        
     let file = root_dir.open_file("helloWorld.txt")?;
     let buffered = BufReader::new(file);
-
+    
     for line in buffered.lines() {
         println!("{}", line?);
     }
+}
+```
+*sample file mounted with VeraCrypt:*
+![img](img/mounted_container.jpg)
 
 Both tasks above are included in the sample project in the `samples` folder.    
 
