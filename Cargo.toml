@@ -1,0 +1,12 @@
+[package]
+name = "rust_ccc"
+version = "1.0.0"
+authors = ["Michael Schreier <m.schreier@gmx.de>"]
+edition = "2018"
+
+[dependencies]
+openssl = "0.10.26"
+fatfs = "0.3"
+fscommon = "0.1.0"
+rand = "0.6.5"
+crc = "^1.0.0"

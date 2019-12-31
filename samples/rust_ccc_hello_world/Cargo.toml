@@ -1,0 +1,8 @@
+[package]
+name = "rust_ccc_hello_world"
+version = "1.0.0"
+authors = ["Michael Schreier <m.schreier@gmx.de>"]
+edition = "2018"
+
+[dependencies]
+rust_ccc = { path = "../../../rust_ccc" }
